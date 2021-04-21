@@ -1,0 +1,40 @@
+{
+  "name": "discord-for-pebble",
+  "author": "JSystems",
+  "version": "1.0.0",
+  "keywords": [
+    "pebble-app"
+  ],
+  "private": true,
+  "dependencies": {
+    "pebblejs": "^1.0.0"
+  },
+  "pebble": {
+    "displayName": "Discord for Pebble",
+    "uuid": "587b7870-327a-4180-bdc7-9bed726e1823",
+    "sdkVersion": "3",
+    "enableMultiJS": true,
+    "targetPlatforms": [
+      "aplite",
+      "basalt",
+      "chalk",
+      "diorite"
+    ],
+    "watchapp": {
+      "watchface": false
+    },
+    "messageKeys": [
+      "dummy"
+    ],
+    "resources": {
+      "media": [
+        {
+          "file": "images/Discord.png",
+          "menuIcon": true,
+          "name": "IMAGES_DISCORD_PNG",
+          "type": "png"
+        }
+      ]
+    }
+  }
+}
