@@ -72,7 +72,7 @@ var channelMenu = new UI.Menu({
 
 var chatList = new UI.Card({
 	status: 'none', 
-	scrollable:true,
+	scrollable: true,
 	title: 'Loading...',
 	titleColor: 'orange',
 	subtitleColor: Feature.color('chrome yellow', 'black'),
@@ -87,10 +87,15 @@ serverMenu.on('select', function(selection) {
 		for(var i = 0; i < servers[selection.itemIndex].channels.length; i++){
 			if(!servers[selection.itemIndex].channels[i].type){
 				channels.push(servers[selection.itemIndex].channels[i]);
-				channelMenu.item(0, j, {
+
+				var item = {
 					title: servers[selection.itemIndex].channels[i].name, 
-					subtitle: servers[selection.itemIndex].channels[i].topic
-				});
+				}
+
+				var topic = servers[selection.itemIndex].channels[i].topic;
+				if(topic) item.subtitle = topic; 
+				
+				channelMenu.item(0, j, item);
 				j++;
 			}
 		}
@@ -123,7 +128,7 @@ channelMenu.on('select', function(selection){
 		messages = JSON.parse(this.responseText);
 		var cardBody = '';
 		chatList.title(messages[0].author.username + ':');
-		chatList.subtitle(messages[0].content);
+		// chatList.subtitle(messages[0].content);
 		for(var i = 1; i < messages.length; i++)
 			cardBody += messages[i].author.username + ':\n' + messages[i].content + '\n';
 		if(cardBody.length > 433 - messages[0].author.username.length - messages[0].content.length);
@@ -201,7 +206,7 @@ ws.onmessage = function(event) {
                 messages.unshift(data.d);
                 var cardBody = '';
                 chatList.title(messages[0].author.username + ':');
-                chatList.subtitle(messages[0].content);
+                // chatList.subtitle(messages[0].content);
                 for(var i = 1; i < messages.length; i++)
                     cardBody += messages[i].author.username + ':\n' + messages[i].content + '\n';
                 if(cardBody.length > 433 - messages[0].author.username.length - messages[0].content.length);
